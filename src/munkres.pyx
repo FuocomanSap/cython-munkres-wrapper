@@ -17,10 +17,11 @@ cdef extern from "cpp/Munkres.h":
         void solve(double* icost, int* answer, int m, int n)
 
 @cython.boundscheck(False)
-def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None):
+def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None, np.ndarray test):
     '''
     calculate the minimum cost assigment of a cost matrix (must be numpy.double type)
     '''
+    print(test)
     cdef int x = A.shape[0]
     cdef int y = A.shape[1]
     
