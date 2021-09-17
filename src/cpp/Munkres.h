@@ -26,7 +26,7 @@ class Munkres {
 public:
 	Munkres();
 	virtual ~Munkres();
-	void solve(double * icost, int* answer, int m, int n);
+	void solve(double * icost, int* answer, int m, int n, double * test,int size_test);
 private:
 	double ** cost;
 	bool ** starred;

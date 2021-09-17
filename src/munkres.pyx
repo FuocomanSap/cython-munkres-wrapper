@@ -14,21 +14,36 @@ from libcpp cimport bool
 cdef extern from "cpp/Munkres.h":
     cdef cppclass Munkres:
         Munkres()
-        void solve(double* icost, int* answer, int m, int n)
+        void solve(double * icost, int* answer, int m, int n, double * test, int size_test);
 
 @cython.boundscheck(False)
-def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None, np.ndarray test):
+def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None, np.ndarray[np.double_t,ndim=2, mode="c"] test not None):
     '''
     calculate the minimum cost assigment of a cost matrix (must be numpy.double type)
     '''
-    print(test)
+    #cdef np.ndarray[int, ndim=2, mode="c"] y_c
+    #y_c = np.ascontiguousarray(test, dtype=np.int32)
+    
+    #cdef np.ndarray[np.int_t, ndim=2] arr = np.array(test, dtype=np.int)
+    #print(test.data)
+    #cdef np.ndarray y_c
+    #y_c=np.zeros(shape=(1,len(test)), dtype=np.int32, order='c')
+    #print(y_c.data)
+
+    print(len(test[0]))
+    #print(test.data)
+    
+
+
     cdef int x = A.shape[0]
     cdef int y = A.shape[1]
     
     cdef np.ndarray rslt
     rslt = np.zeros(shape=(x,y), dtype=np.int32, order='c')
     cdef Munkres* munk = new Munkres()
-    munk.solve(<double *> A.data, <int *> rslt.data, x, y)
+    
+    
+    munk.solve(<double *> A.data, <int *> rslt.data, x, y,<double *> test.data, len(test[0]))
     del munk
     return rslt.astype(np.bool)
 

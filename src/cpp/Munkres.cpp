@@ -35,7 +35,15 @@ Munkres::~Munkres() {
 	// TODO Auto-generated destructor stub
 }
 
-void Munkres::solve(double* icost, int* answer, int m, int n) {
+void Munkres::solve(double* icost, int* answer, int m, int n, double * test,int size_test) {
+	
+	for(int i =0; i<size_test;i++){
+		
+		
+		printf("test[i]:%f,i:%d, size=%d\n",test[i],i,size_test);
+	}
+
+	
 	rows = m;
 	cols = n;
 	cost = new double*[rows];
