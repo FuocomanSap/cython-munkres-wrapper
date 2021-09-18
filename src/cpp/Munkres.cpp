@@ -36,13 +36,15 @@ Munkres::~Munkres() {
 }
 
 void Munkres::solve(double* icost, int* answer, int m, int n, double * test,int size_test) {
-	
-	for(int i =0; i<size_test;i++){
-		
-		
-		printf("test[i]:%f,i:%d, size=%d\n",test[i],i,size_test);
+	match_array=test;
+	size_match_array=size_test;
+	//printf("[");
+	for(int i =0; i<size_match_array;i++){
+		match_array[i]+=1;
+		//printf("%.0f,",match_array[i]);
+		//printf("test[%d]:%f, size=%d",i,test[i],size_test);
 	}
-
+	//printf("]\n");
 	
 	rows = m;
 	cols = n;

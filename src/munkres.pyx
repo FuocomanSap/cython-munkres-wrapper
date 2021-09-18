@@ -30,7 +30,8 @@ def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None, np.ndarray[np.d
     #y_c=np.zeros(shape=(1,len(test)), dtype=np.int32, order='c')
     #print(y_c.data)
 
-    print(len(test[0]))
+    #print(test)
+    #print(len(test[0]))
     #print(test.data)
     
 
@@ -45,6 +46,7 @@ def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None, np.ndarray[np.d
     
     munk.solve(<double *> A.data, <int *> rslt.data, x, y,<double *> test.data, len(test[0]))
     del munk
+    #print(test)
     return rslt.astype(np.bool)
 
 @cython.boundscheck(False)

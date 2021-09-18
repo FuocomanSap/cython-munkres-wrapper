@@ -67,6 +67,10 @@ private:
 	int find_starred_zero_in_col(int);
 	int find_primed_zero_in_row(int);
 
+	//start modif
+	double* match_array;
+	int size_match_array;
+
 };
 
 #endif /* MUNKRES_H_ */
