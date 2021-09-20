@@ -38,14 +38,11 @@ Munkres::~Munkres() {
 void Munkres::solve(double* icost, int* answer, int m, int n, double * test,int size_test) {
 	match_array=test;
 	size_match_array=size_test;
-	//printf("[");
-	for(int i =0; i<size_match_array;i++){
-		match_array[i]+=1;
-		//printf("%.0f,",match_array[i]);
-		//printf("test[%d]:%f, size=%d",i,test[i],size_test);
-	}
-	//printf("]\n");
-	
+	//printf("match_Array[0]=%f\n",match_array[0]);
+	kf2_size=match_array[0];
+
+	if(m!=n) printf("m:%d,n:%d\n",m,n);
+
 	rows = m;
 	cols = n;
 	cost = new double*[rows];
@@ -84,6 +81,11 @@ void Munkres::solve(double* icost, int* answer, int m, int n, double * test,int 
 
 		step1();
 	}
+
+	
+				//printf("i:%d,j:%d\n",i,j);
+				//printf("array[i]:%f,i:%d\n",match_array[i],i);
+				//printf("array[j]:%f\n",match_array[i]);
 
 	int index = 0;
 	for (int i = 0; i < rows; i++) {
@@ -170,13 +172,17 @@ void Munkres::step3() {
 	 */
 	int cov_count = 0;
 	for (int i = 0; i < rows; i++) {
+		
 		for (int j = 0; j < cols; j++) {
+			
 			if (starred[i][j] == 1) {
 				cover_col(j);
+				
 				cov_count += 1;
 			}
 		}
 	}
+	
 	if (cov_count != smallest) {
 		step4();
 	}

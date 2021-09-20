@@ -17,10 +17,11 @@ cdef extern from "cpp/Munkres.h":
         void solve(double * icost, int* answer, int m, int n, double * test, int size_test);
 
 @cython.boundscheck(False)
-def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None, np.ndarray[np.double_t,ndim=2, mode="c"] test not None):
+def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None, np.ndarray[np.double_t,ndim=1, mode="c"] test not None):
     '''
     calculate the minimum cost assigment of a cost matrix (must be numpy.double type)
     '''
+    #print(test)
     #cdef np.ndarray[int, ndim=2, mode="c"] y_c
     #y_c = np.ascontiguousarray(test, dtype=np.int32)
     
@@ -44,9 +45,9 @@ def munkres(np.ndarray[np.double_t,ndim=2, mode="c"] A not None, np.ndarray[np.d
     cdef Munkres* munk = new Munkres()
     
     
-    munk.solve(<double *> A.data, <int *> rslt.data, x, y,<double *> test.data, len(test[0]))
+    munk.solve(<double *> A.data, <int *> rslt.data, x, y,<double *> test.data, len(test))
     del munk
-    #print(test)
+    #print(rslt.astype(np.bool))
     return rslt.astype(np.bool)
 
 @cython.boundscheck(False)

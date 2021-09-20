@@ -70,6 +70,7 @@ private:
 	//start modif
 	double* match_array;
 	int size_match_array;
+	int kf2_size;
 
 };
 
