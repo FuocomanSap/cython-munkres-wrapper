@@ -91,6 +91,10 @@ void Munkres::solve(double* icost, int* answer, int m, int n, double * test,int 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
 			answer[index] = starred[i][j];
+			//printf("i:%d,j:%d,starred:%d\n",i,j,starred[i][j]);
+			if(answer[index] && j<kf2_size && i<size_match_array){
+				match_array[i]=j;
+			}
 			index++;
 		}
 	}
