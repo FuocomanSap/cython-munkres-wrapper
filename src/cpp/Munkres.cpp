@@ -95,6 +95,9 @@ void Munkres::solve(double* icost, int* answer, int m, int n, double * test,int 
 			if(answer[index] && j<kf2_size && i<size_match_array){
 				match_array[i]=j;
 			}
+			if(!answer[index] && j<kf2_size && i<size_match_array){
+				match_array[i]=-1;
+			}
 			index++;
 		}
 	}
