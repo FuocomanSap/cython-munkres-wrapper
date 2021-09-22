@@ -40,6 +40,7 @@ void Munkres::solve(double* icost, int* answer, int m, int n, double * test,int 
 	size_match_array=size_test;
 	//printf("match_Array[0]=%f\n",match_array[0]);
 	kf2_size=match_array[0];
+	match_array[0]=-1;
 
 	if(m!=n) printf("m:%d,n:%d\n",m,n);
 
@@ -95,9 +96,7 @@ void Munkres::solve(double* icost, int* answer, int m, int n, double * test,int 
 			if(answer[index] && j<kf2_size && i<size_match_array){
 				match_array[i]=j;
 			}
-			if(!answer[index] && j<kf2_size && i<size_match_array){
-				match_array[i]=-1;
-			}
+			
 			index++;
 		}
 	}
